@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+    }
+    
+    .container {
+      margin: 20px;
+    }
+    
+    .section {
+      cursor: pointer;
+      font-weight: bold;
+      padding: 10px;
+      color: #ffffff;
+      background: linear-gradient(to right, #FAA735FE, #FAA735BB);
+      border-radius: 5px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .section::before {
+      content: "\e5ce";
+      font-family: 'Material Icons';
+      font-size: 18px;
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      transition: transform 0.2s ease;
+    }
+    
+    .section.open::before {
+      transform: translateY(-50%) rotate(-180deg);
+    }
+    
+    .sublist {
+      display: none;
+      list-style-type: none;
+      margin-top: 5px;
+      margin-left: 20px;
+    }
+    
+    .sublist li {
+      margin-bottom: 5px;
+      color: #ffffff;
+    }
+    
+    @media screen and (max-width: 480px) {
+      .section {
+        font-size: 18px;
+      }
+      
+      .sublist li {
+        font-size: 14px;
+      }
+    }
+  </style>
+  <script>
+    function toggleSublist(sectionId) {
+      var sublist = document.getElementById(sectionId + "-sublist");
+      var section = document.getElementById(sectionId);
+      var sections = document.getElementsByClassName("section");
+      var sublists = document.getElementsByClassName("sublist");
+
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].id !== sectionId) {
+          sections[i].classList.remove("open");
+        }
+      }
+
+      for (var j = 0; j < sublists.length; j++) {
+        if (sublists[j].id !== sectionId + "-sublist") {
+          sublists[j].style.display = "none";
+        }
+      }
+
+      sublist.style.display = (sublist.style.display === "none") ? "block" : "none";
+      section.classList.toggle("open");
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="section" id="notes" onclick="toggleSublist('notes')">Notes</div>
+    <ul id="notes-sublist" class="sublist">
+      <li>Note 1 : Wave Optics</li>
+      <li>Note 2 : Laser and Optic Fibre</li>
+      <li>Note 3 : Quantum Mechanics</li>
+      <li>Note 4 : Semiconductor Physics</li>
+      <li>Note 5 : Magnetism and Superconductivity</li>
+      <li>Note 6 : Non Destructive Testing and Nanotechnology</li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="section" id="assignments" onclick="toggleSublist('assignments')">Assignments</div>
+    <ul id="assignments-sublist" class="sublist">
+      <li>Assignment No.1</li>
+      <li>Assignment No.2</li>
+      <li>Assignment No.3</li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="section" id="practical" onclick="toggleSublist('practical')">Practical</div>
+    <ul id="practical-sublist" class="sublist">
+      <li>Practical 1 : Experiment based on Newtons Ring</li>
+      <li>Practical 2</li>
+      <li>Practical 3</li>
+    </ul>
+  </div>
+</body>
+</html>
